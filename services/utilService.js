@@ -4,6 +4,19 @@ const request = require('request');
 const botRepo = require('../repositories/bot-repo');
 const moment = require('moment');
 
+exports.pingApi = function (url){
+    var options = {
+        method: 'GET',
+        url: url
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        console.log(body);
+    });
+}
+
 exports.sendMessage = function (conversationid, message) {
     var options = {
         method: 'GET',
