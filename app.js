@@ -8,11 +8,9 @@ var moment = require('moment');
 //     botService.getRunWorks();
 // }, 15000);
 
-
 setInterval(function () {
-    console.log('currentDate', moment().format('DD/MM/YYYY - HH:mm:ss'));
     botService.getRunWorks();
-}, 2000);
+}, 15000);
 
 // var request = require('request');
 
