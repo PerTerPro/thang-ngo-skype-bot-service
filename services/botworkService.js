@@ -15,10 +15,10 @@ exports.getRunWorks = function () {
         var currentTime = moment().tz(timeZone).format('HH:mm');      
 
         results.forEach(element => {
-            let trigger = element.trigger;
-            let startDate = trigger.startDate ? moment(trigger.startDate, 'DD/MM/YYYY') : null;
-            let endDate = moment(trigger.endDate, 'DD/MM/YYYY');
-            let countDay = endDate.diff(currentDate, 'days');
+            var trigger = element.trigger;
+            var startDate = trigger.startDate ? moment(trigger.startDate, 'DD/MM/YYYY') : null;
+            var endDate = moment(trigger.endDate, 'DD/MM/YYYY');
+            var countDay = endDate.diff(currentDate, 'days');
             if (countDay > -1) {
                 if(trigger.timeOfDay == currentTime){
                     switch (trigger.typeTrigger) {
