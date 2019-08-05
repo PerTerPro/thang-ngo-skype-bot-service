@@ -3,15 +3,16 @@
 // const botRepo = require('../repositories').BotRepo;
 const utilService = require('./utilService');
 const botRepo = require('../repositories/bot-repo');
-const moment = require('moment');
+// const moment = require('moment');
+const moment = require('moment-timezone');
 const _ = require('lodash');
 
 exports.getRunWorks = function () {
     botRepo.getRunWorks().then(function (results) {
         // var currentDate = moment().startOf('day');
         // var currentTime = moment().format('HH:mm'); 
-        console.log(moment().format('DD/MM/YYYY HH:mm'));
-        console.log(moment().local().format('DD/MM/YYYY HH:mm'));
+        console.log(moment().tz("Asia/Ho_Chi_Minh").format('DD/MM/YYYY HH:mm'));
+        // console.log(moment().tz("Asia/Ho_Chi_Minh").format('DD/MM/YYYY HH:mm'));
 
         // moment().format('HH:mm');
         // var a = results;
