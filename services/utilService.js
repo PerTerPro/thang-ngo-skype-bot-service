@@ -7,27 +7,24 @@ const moment = require('moment');
 exports.sendMessage = function (conversationid, message) {
     var options = {
         method: 'GET',
-        // url: 'https://thang-ngo-bot.herokuapp.com/sendMessage?conversationId=' + conversationid + '&message=' + message,
         url: 'https://thang-ngo-bot.herokuapp.com/sendMessage',
-        headers:{
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'
-        },
         qs:
         {
-            conversationid: decodeURI(conversationid),
-            message: decodeURI(message)
+            conversationId: conversationid,
+            message: message
+        },
+        headers:
+        {
+            // 'cache-control': 'no-cache',
+            // Connection: 'keep-alive',
+            // 'Accept-Encoding': 'gzip, deflate',
+            // Host: 'thang-ngo-bot.herokuapp.com',
+            // 'Postman-Token': 'd68926ee-1cb4-4ed5-8794-b3f664d5fb56,11f35f7c-03b1-4358-b9db-897806145188',
+            // 'Cache-Control': 'no-cache',
+            // Accept: '*/*',
+            // 'User-Agent': 'PostmanRuntime/7.15.2',
+            // 'Content-Type': 'application/json'
         }
-        // method: 'GET',
-        // // url: 'https://thang-ngo-bot.herokuapp.com/sendMessage?conversationId=' + conversationid + '&message=' + message,
-        // url: 'http://bot.websosanh.vn/api/SendMessage/post',
-        // headers:{
-        //     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'
-        // },
-        // qs:
-        // {
-        //     conversationid: '29:1RUJS45u4ZHAfHehFKcMOrIkZearj5X0fdZHCKozGwng',
-        //     message: 'haha'
-        // }        
     };
 
     request(options, function (error, response, body) {
@@ -35,17 +32,6 @@ exports.sendMessage = function (conversationid, message) {
 
         console.log(body);
     });
-    // var url = 'https://thang-ngo-bot.herokuapp.com/sendMessage?conversationId=' + conversationid + '&message=' + message;
-    // // request(url, (err, res, body) => {
-    // //     if (err) { return console.log(err); }
-    // //     console.log(body.url);
-    // //     console.log(body.explanation);
-    // // })
-    // request.get(url, function (err, res, body) {
-    //     if (err) { return console.log(err); }
-    //     console.log(body.url);
-    //     console.log(body.explanation);
-    // });
 }
 
 exports.convertDayWeekToIntDay = function (dayOfWeek) {

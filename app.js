@@ -3,13 +3,16 @@ require('dotenv').config();
 var botService = require('./services/botworkService');
 var moment = require('moment');
 
+// setInterval(function () {
+//     console.log('currentDate', moment().format('DD/MM/YYYY - HH:mm:ss'));
+//     botService.getRunWorks();
+// }, 15000);
+
+
 setInterval(function () {
     console.log('currentDate', moment().format('DD/MM/YYYY - HH:mm:ss'));
     botService.getRunWorks();
-}, 15000);
-
-
-
+}, 2000);
 
 // var request = require('request');
 
