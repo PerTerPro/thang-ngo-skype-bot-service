@@ -1,10 +1,10 @@
 const url = process.env.ConnectionString;
 const collection = 'bot-works';
 
-var mongoose = require('mongoose');
-var botWorkModel = require('../models/botworkModel');
-var schema = botWorkModel.botWorkModel();
-var BotWork = mongoose.model(collection, schema);
+const mongoose = require('mongoose');
+const botWorkModel = require('../models/botworkModel');
+const schema = botWorkModel.botWorkModel();
+const BotWork = mongoose.model(collection, schema);
 
 mongoose.connect(url, { useNewUrlParser: true });
 //  const client = new mongoose.connect(url, { useNewUrlParser: true });
@@ -28,4 +28,8 @@ exports.getRunWorks = function () {
 exports.setIsSended = function(botwork, isSended){
     botwork.isSended = isSended;
     return BotWork.updateOne(botwork);
+}
+
+exports.setIsSendedAll = function(isSended){
+    return BotWork.updateMany({"isEnabled": true}, {"$set":{"isSended": isSended}});
 }
