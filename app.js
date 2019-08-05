@@ -1,38 +1,22 @@
 
 require('dotenv').config();
 var botService = require('./services/botworkService');
+
 var moment = require('moment');
 
-// setInterval(function () {
-//     console.log('currentDate', moment().format('DD/MM/YYYY - HH:mm:ss'));
-//     botService.getRunWorks();
-// }, 15000);
+const restify = require('restify');
+const server = restify.createServer();
 
-setInterval(function () {
-    botService.getRunWorks();
-}, 15000);
+// using plugin của restify 
+//http://restify.com/docs/plugins-api/#queryparser
+server.use(restify.plugins.queryParser());
 
-// var request = require('request');
-
-// var count = 1;
-// setInterval(function () {
-//     console.log('Run...');
-//     var options = {
-//         method: 'GET',
-//         url: 'http://bot.websosanh.vn/api/SendMessage/post',
-//         qs:
-//         {
-//             conversationid: '29:1RUJS45u4ZHAfHehFKcMOrIkZearj5X0fdZHCKozGwng',
-//             message: count
-//         }
-//     };
-
-//     request(options, function (error, response, body) {
-//         if (error) throw new Error(error);
-//         count++;
-//         console.log(body);
-//     });
-
-// }, 1000);
+server.listen(process.env.port || process.env.PORT || 67891, function () {
+    console.log('%s listening to %s', server.name, server.url);
+    
+    setInterval(function () {
+        botService.getRunWorks();
+    }, 15000);
+});
 
 
