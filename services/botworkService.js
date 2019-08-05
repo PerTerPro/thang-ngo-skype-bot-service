@@ -10,11 +10,10 @@ const timeZone = "Asia/Ho_Chi_Minh";
 
 exports.getRunWorks = function () {
     botRepo.getRunWorks().then(function (results) {
+        console.log('Bot Work need send: ' + results.length);
         var currentDate = moment().tz(timeZone).startOf('day');
         var currentTime = moment().tz(timeZone).format('HH:mm'); 
-
-        moment().format('HH:mm');
-        var a = results;
+     
         results.forEach(element => {
             var trigger = element.trigger;
             var startDate = trigger.startDate ? moment(trigger.startDate, 'DD/MM/YYYY') : null;
