@@ -8,6 +8,7 @@ const moment = require('moment-timezone');
 
 const restify = require('restify');
 const server = restify.createServer();
+var oldDate = moment().tz(timeZone).startOf('day');
 
 // using plugin của restify 
 //http://restify.com/docs/plugins-api/#queryparser
@@ -28,15 +29,14 @@ server.listen(process.env.port || process.env.PORT || 67891, function () {
         botService.getRunWorks();
     }, 15000);
 
-    // Service chạy khi qua ngày mới => refresh những work đã send trong ngày hum qua.
-    var oldDate = moment().tz(timeZone).startOf('day');
+    // Service chạy khi qua ngày mới => refresh những work đã send trong ngày hum qua.  
 
     setInterval(function () {
         let endDate = moment().tz(timeZone).startOf('day');
-
+        // console.log(oldDate);
         let countDay = endDate.diff(oldDate, 'days');
 
-        if (countDay < 0) {
+        if (countDay > 0) {
             oldDate = endDate;
             botService.setIsSendedAll();
             console.log('countDay', countDay);
