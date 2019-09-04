@@ -26,8 +26,10 @@ exports.getRunWorks = function () {
 }
 
 exports.setIsSended = function(botwork, isSended){
-    botwork.isSended = isSended;
-    return BotWork.updateOne(botwork).where('id').equals(botwork.id);
+    // botwork.isSended = isSended;
+    return BotWork.update({ id: botwork.id },{
+        isSended: isSended
+    });
 }
 
 exports.setIsSendedAll = function(isSended){
