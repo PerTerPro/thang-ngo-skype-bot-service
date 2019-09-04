@@ -1,14 +1,18 @@
 
+"use strict";
 require('dotenv').config();
 const botService = require('./services/botworkService');
 const utilService = require('./services/utilService');
 const timeZone = "Asia/Ho_Chi_Minh";
 const moment = require('moment-timezone');
+
+
+
 // botService.getRunWorks();
 
 const restify = require('restify');
 const server = restify.createServer();
-var oldDate = moment().tz(timeZone).startOf('day');
+global.currentDate = moment().tz(timeZone).startOf('day');
 
 // using plugin của restify 
 //http://restify.com/docs/plugins-api/#queryparser
@@ -18,11 +22,11 @@ server.listen(process.env.port || process.env.PORT || 67891, function () {
     console.log('%s listening to %s', server.name, server.url);
 
     // Service ping api 15' / lần
-    setInterval(function () {
-        console.log('ping api');
-        utilService.pingApi('https://thang-ngo-bot.herokuapp.com/');
-        utilService.pingApi('https://thang-ngo-bot-service.herokuapp.com/');
-    }, 900000);
+    // setInterval(function () {
+    //     console.log('ping api');
+    //     utilService.pingApi('https://thang-ngo-bot.herokuapp.com/');
+    //     utilService.pingApi('https://thang-ngo-bot-service.herokuapp.com/');
+    // }, 900000);
 
     // Service chạy 15s / lần
     setInterval(function () {
@@ -34,10 +38,10 @@ server.listen(process.env.port || process.env.PORT || 67891, function () {
     setInterval(function () {
         let endDate = moment().tz(timeZone).startOf('day');
         // console.log(oldDate);
-        let countDay = endDate.diff(oldDate, 'days');
+        let countDay = endDate.diff(global.currentDate, 'days');
 
         if (countDay > 0) {
-            oldDate = endDate;
+            global.currentDate = endDate;
             botService.setIsSendedAll();
             console.log('countDay', countDay);
         }
