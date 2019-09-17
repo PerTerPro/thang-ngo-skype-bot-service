@@ -18,7 +18,7 @@ global.currentDate = moment().tz(timeZone).startOf('day');
 //http://restify.com/docs/plugins-api/#queryparser
 server.use(restify.plugins.queryParser());
 
-server.listen(process.env.port || process.env.PORT || 67891, function () {
+server.listen(process.env.port || process.env.PORT || 65535, function () {
     console.log('%s listening to %s', server.name, server.url);
 
     // Service ping api 15' / lần
@@ -28,12 +28,13 @@ server.listen(process.env.port || process.env.PORT || 67891, function () {
     //     utilService.pingApi('https://thang-ngo-bot-service.herokuapp.com/');
     // }, 900000);
 
-    // Service chạy 15s / lần
+    //Service chạy 15s / lần
     setInterval(function () {
         botService.getRunWorks();
-    }, 15000);
+    }, 15000);  
 
-    // Service chạy khi qua ngày mới => refresh những work đã send trong ngày hum qua.  
+
+    //Service chạy khi qua ngày mới => refresh những work đã send trong ngày hum qua.  
 
     setInterval(function () {
         let endDate = moment().tz(timeZone).startOf('day');
@@ -42,6 +43,7 @@ server.listen(process.env.port || process.env.PORT || 67891, function () {
 
         if (countDay > 0) {
             global.currentDate = endDate;
+            utilService.pingApi('https://thang-ngo-bot.herokuapp.com/sendMessage?conversationId=29:1UxXLu0fePcHipKWVCSWWP410RtBxqew33YVfO9e_TAU&message=Ngày mới đến rồi.');
             botService.setIsSendedAll();
             console.log('countDay', countDay);
         }

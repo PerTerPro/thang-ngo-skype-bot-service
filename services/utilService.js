@@ -1,13 +1,37 @@
 "use strict"
 
 const request = require('request');
+var URL = require('url');
 const botRepo = require('../repositories/bot-repo');
 const moment = require('moment');
 
-exports.pingApi = function (url){
+exports.pingApi = function (url) {  
+    var urlData = URL.parse(url, true);
+
+    var qs = {}; 
+
+    for(var key in urlData.query){
+        qs[key] = urlData.query[key];
+     }
+
+    console.log(qs);
+
     var options = {
         method: 'GET',
-        url: url
+        url: urlData.protocol + '//' + urlData.host + urlData.pathname,
+        qs: qs,
+        headers:
+        {
+            'cache-control': 'no-cache',
+            Connection: 'keep-alive',
+            'Accept-Encoding': 'gzip, deflate',
+            Host: 'thang-ngo-bot.herokuapp.com',
+            'Postman-Token': 'bb1da668-ee66-46cb-b6f0-ea1c1d0cdbe3,d19f98ae-2015-435f-8033-cc392eb47754',
+            'Cache-Control': 'no-cache',
+            Accept: '*/*',
+            'User-Agent': 'PostmanRuntime/7.15.2',
+            'Content-Type': 'application/json'
+        }
     };
 
     request(options, function (error, response, body) {
@@ -15,6 +39,7 @@ exports.pingApi = function (url){
 
         console.log(body);
     });
+
 }
 
 exports.sendMessage = function (conversationid, message) {
