@@ -19,8 +19,8 @@ exports.getRunWorks = function () {
             var startDate = trigger.startDate ? moment(trigger.startDate, 'DD/MM/YYYY') : null;
             var endDate = moment(trigger.endDate, 'DD/MM/YYYY');
             var countDay = endDate.diff(currentDate, 'days');
-            if (/*countDay > -1*/ 1 == 1) {
-                if(/*trigger.timeOfDay == currentTime*/ 1 == 1) {
+            if (countDay > -1) {
+                if(trigger.timeOfDay == currentTime) {
                     switch (trigger.typeTrigger) {
                         case 1:
                             utilService.sendMessage(element.conversationId, element.message, function() {
