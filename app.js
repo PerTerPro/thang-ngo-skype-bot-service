@@ -45,7 +45,9 @@ server.listen(process.env.port || process.env.PORT || 65535, function () {
         if (countDay > 0) {
             global.currentDate = endDate;
             utilService.pingApi('https://thang-ngo-bot.herokuapp.com/sendMessage?conversationId=29:1UxXLu0fePcHipKWVCSWWP410RtBxqew33YVfO9e_TAU&message=Ngày mới đến rồi.');
-            botService.setIsSendedAll();
+            botService.setIsSendedAll().then(function(res){
+                console.log('Refresh Sended', 'Refresh Sended');
+            });
             console.log('countDay', countDay);
         }
     }, 1000);
