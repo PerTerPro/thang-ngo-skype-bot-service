@@ -20,6 +20,7 @@ server.use(restify.plugins.queryParser());
 
 server.listen(process.env.port || process.env.PORT || 65535, function () {
     console.log('%s listening to %s', server.name, server.url);
+    console.log('thang-ngo-bot-service');
 
     // Service ping api 15' / lần
     // setInterval(function () {

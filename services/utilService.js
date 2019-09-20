@@ -42,7 +42,7 @@ exports.pingApi = function (url) {
 
 }
 
-exports.sendMessage = function (conversationid, message) {
+exports.sendMessage = function (conversationid, message, callBackFn) {
     var options = {
         method: 'GET',
         url: 'https://thang-ngo-bot.herokuapp.com/sendMessage',
@@ -67,7 +67,7 @@ exports.sendMessage = function (conversationid, message) {
 
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
-
+        if(callBackFn != undefined) callBackFn();
         console.log(body);
     });
 }
