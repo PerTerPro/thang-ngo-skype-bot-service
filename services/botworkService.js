@@ -23,7 +23,7 @@ exports.getRunWorks = function () {
                 if(trigger.timeOfDay == currentTime) {
                     switch (trigger.typeTrigger) {
                         case 1:
-                            utilService.sendMessage(element.conversationId, element.message, function() {
+                            utilService.sendMessage(element.conversationSendId, element.message, function() {
                                 botRepo.setIsSended(element, true).then(function (res) {
                                     // callback
                                 });
@@ -31,7 +31,7 @@ exports.getRunWorks = function () {
                             break;
                         case 2:
                             if(currentDate.diff(startDate, 'days') > -1){
-                                utilService.sendMessage(element.conversationId, element.message, function() {
+                                utilService.sendMessage(element.conversationSendId, element.message, function() {
                                     botRepo.setIsSended(element, true).then(function (res) {
                                         // callback
                                     });
@@ -42,7 +42,7 @@ exports.getRunWorks = function () {
                             let m = currentDate.isoWeekday();
                             let currentDayOfWeek = utilService.convertIntDayToDayWeek(m);
                             if(_.map(trigger.dayOfWeek, function(n,i){return n.toLowerCase();}).filter(x => x == currentDayOfWeek).length > 0){
-                                utilService.sendMessage(element.conversationId, element.message, function() {
+                                utilService.sendMessage(element.conversationSendId, element.message, function() {
                                     botRepo.setIsSended(element, true).then(function (res) {
                                         // callback
                                     });
@@ -53,7 +53,7 @@ exports.getRunWorks = function () {
                             let curMonth = currentDate.month();
                             let curDay = currentDate.day();
                             if(trigger.month.filter(x => x == curMonth).length > 0 && trigger.dayOfMonth.filter(x => x == curDay).length > 0){
-                                utilService.sendMessage(element.conversationId, element.message, function() {
+                                utilService.sendMessage(element.conversationSendId, element.message, function() {
                                     botRepo.setIsSended(element, true).then(function (res) {
                                         // callback
                                     });
