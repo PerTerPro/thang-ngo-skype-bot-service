@@ -10,7 +10,7 @@ const timeZone = "Asia/Ho_Chi_Minh";
 
 exports.getRunWorks = function () {
     botRepo.getRunWorks().then(function (results) {
-        console.log('Bot Work can be send: ' + results.length + ' - Time: ' + moment().tz(timeZone).format('DD/MM/YYYY - HH:mm'));
+        console.log('Bot Work can be send: ' + results.length + ' - Time: ' + moment().tz(timeZone).format('DD/MM/YYYY - HH:mm:ss'));
         var currentDate = moment().tz(timeZone).startOf('day');
         var currentTime = moment().tz(timeZone).format('HH:mm');      
 
