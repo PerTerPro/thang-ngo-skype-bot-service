@@ -9,6 +9,7 @@ var BotWorkSchemaModel = new Schema({
   id: String,
   name: String,
   conversationId: String,
+  conversationSendId: String,
   message: String,
   isEnabled: Boolean,
   isSended: Boolean,
